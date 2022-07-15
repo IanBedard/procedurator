@@ -1,104 +1,27 @@
 $("#loading").hide();
-
-
-
-function ConvertFra() {
+/*regex*/
+const regexWidth = /(((width=")+(\d*(%|px)?)")?)+(\s*(valign="top"))?/g;
+  const regexBR = /<br(\/)?>(\n.*?)?(?!<\/\w*>)/g;
+  const regexTable = /<table .*>/g;
+  const regexSpaces = /(<\w*>)(&nbsp;|\s)?(<\/\w*>)/g;
+  const regexNames = /\sname="(\w|\d)*"/g;
+  const regexDiv =
+    /<div>(((\n.*?)(<div>(\s*)<\/div>\n.*?)*(\n*)*)|(\s*))<\/div>/g;
+  const regexTR =
+    /<table class="table table-bordered table-hover">(\n.*?)<tr>/g;
+  const regexTD = /<td(\s)*([\w,\s,=,"]*)>/g;
+  const regexBRall = /<\w*><br(\s(clear="all"))>(\n.*?)?<\/\w*>/g;
+  const regexEM = /<\/em><em>/g;
+  const regexHtwo = /<h2(.)*><strong>/g;
   
-  $("#loading").show().delay(300).slideDown(300);
-  setTimeout(
-    function() 
-    {
-
-  const imageFolder = $("#imageFolder").val();
-  let textOrigin = $("#textOrigin").val(); 
-
-  const regexWidth = /(((width=")+(\d*(%|px)?)")?)+(\s*(valign="top"))?/g;
-  const regexBR = /<br(\/)?>(\n.*?)?(?!<\/\w*>)/g;
-  const regexTable = /<table .*>/g;
-  const regexSpaces = /(<\w*>)(&nbsp;|\s)?(<\/\w*>)/g;
-  const regexNames = /\sname="(\w|\d)*"/g;
-  const regexDiv =
-    /<div>(((\n.*?)(<div>(\s*)<\/div>\n.*?)*(\n*)*)|(\s*))<\/div>/g;
-  const regexTR =
-    /<table class="table table-bordered table-hover">(\n.*?)<tr>/g;
-  const regexTD = /<td(\s)*([\w,\s,=,"]*)>/g;
-  const regexBRall = /<\w*><br(\s(clear="all"))>(\n.*?)?<\/\w*>/g;
   const regexTRactive = `<table class="table table-bordered table-hover">
     <tr class="active">`;
   const tableBordered = '<table class="table table-bordered table-hover">';
-  const regexEM = /<\/em><em>/g;
-
-  //ABBR
-  const regexAbbrRH = /(?<!(\w))RH(?!(\w))/g;
-  const AbbrRH = '<abbr title="Ressources Humaine">RH</abbr>';
-  const regexAbbrCR = /(?<!(\w))CR(?!(\w))/g;
-
-  const AbbrCR = '<abbr title="Conseiller en r&eacute;mun&eacute;ration">CR</abbr>';
-  const regexAbbrCIDP = /(?<!(\w))CIDP(?!(\w))/g;
-  const AbbrCIDP = '<abbr title="code d&ldquo;identification de dossier personnel">CIDP</abbr>';
-
-  const regexAbbrMFT = /(?<!(\w))MFT(?!(\w))/g;
-  const AbbrMFT = '<abbr title="Mappage de gestion des ressources humaines">MFT</abbr>';
-
-  const regexAbbrSGRH = /(?<!(\w))SGRH(?!(\w))/g;
-  const AbbrSGRH = '<abbr title="Syst&egrave;me de gestion des ressources humaines">SGRH</abbr>';
-
-  textResult = textOrigin.replaceAll(regexWidth, "");
-  textResult = textResult.replaceAll(regexTable, tableBordered);
-  textResult = textResult.replaceAll(regexNames, "");
-  textResult = textResult.replaceAll(regexDiv, "");
-  textResult = textResult.replaceAll(regexTR, regexTRactive);
-  textResult = textResult.replaceAll('align="center"', "");
-  textResult = textResult.replaceAll(regexSpaces, "");
-  textResult = textResult.replaceAll(regexBR, "");
-  textResult = textResult.replaceAll(regexBRall, "");
-  textResult = textResult.replaceAll(regexTD, "<td>");
-  textResult = textResult.replaceAll(regexEM, "");
-  textResult = textResult.replaceAll("<h2><strong>", "<h2>");
-  textResult = textResult.replaceAll("</strong></h2>", "</h2>");
-
-  //ABBR
-  textResult = textResult.replaceAll(regexAbbrSGRH, AbbrSGRH);
-  textResult = textResult.replaceAll(regexAbbrCIDP, AbbrCIDP);
-
-  textResult = textResult.replaceAll(regexAbbrMFT, AbbrMFT);
-
-  textResult = textResult.replaceAll(regexAbbrRH, AbbrRH);
-  textResult = textResult.replaceAll(regexAbbrCR, AbbrCR);
 
 
-  console.log(textResult);
-  $("#textResult").val(textResult);
 
-alert("Conversion complété");
-  $("#loading").hide().delay(300).slideUp(300);
-}, 500);
-}
-function ConvertEng() {
-  $("#loading").show().delay(300).slideDown(300);
-  setTimeout(
-    function() 
-    { 
 
-  //const imageFolder = $("#imageFolder").val();
-  let textOrigin = $("#textOrigin").val(); 
-
-  const regexWidth = /(((width=")+(\d*(%|px)?)")?)+(\s*(valign="top"))?/g;
-  const regexBR = /<br(\/)?>(\n.*?)?(?!<\/\w*>)/g;
-  const regexTable = /<table .*>/g;
-  const regexSpaces = /(<\w*>)(&nbsp;|\s)?(<\/\w*>)/g;
-  const regexNames = /\sname="(\w|\d)*"/g;
-  const regexDiv =
-    /<div>(((\n.*?)(<div>(\s*)<\/div>\n.*?)*(\n*)*)|(\s*))<\/div>/g;
-  const regexTR =
-    /<table class="table table-bordered table-hover">(\n.*?)<tr>/g;
-  const regexTD = /<td(\s)*([\w,\s,=,"]*)>/g;
-  const regexBRall = /<\w*><br(\s(clear="all"))>(\n.*?)?<\/\w*>/g;
-  const regexEM = /<\/em><em>/g;
-  const regexTRactive = `<table class="table table-bordered table-hover">
-    <tr class="active">`;
-  const tableBordered = '<table class="table table-bordered table-hover">';
-  //abbr */
+  //abbr ENG */
   const regexAbbrCA = /(?<!(\w))CA(?!(\w))/g;
   const AbbrCA = '<abbr title="compensation advisor">CA</abbr>';
   const regexAbbrEI = /(?<!(\w))EI(?!(\w))/g;
@@ -148,6 +71,36 @@ function ConvertEng() {
   const regexAbbrHRMS = /(?<!(\w))HRMS(?!(\w))/g;
   const AbbrHRMS = '<abbr title="Human Resource Management System">HRMS</abbr>';
 
+
+  //FRA
+
+  const regexAbbrRH = /(?<!(\w))RH(?!(\w))/g;
+  const AbbrRH = '<abbr title="Ressources Humaine">RH</abbr>';
+  const regexAbbrCR = /(?<!(\w))CR(?!(\w))/g;
+
+  const AbbrCR = '<abbr title="Conseiller en r&eacute;mun&eacute;ration">CR</abbr>';
+  const regexAbbrCIDP = /(?<!(\w))CIDP(?!(\w))/g;
+  const AbbrCIDP = '<abbr title="code d&ldquo;identification de dossier personnel">CIDP</abbr>';
+
+  const regexAbbrMFT = /(?<!(\w))MFT(?!(\w))/g;
+  const AbbrMFT = '<abbr title="Mappage de gestion des ressources humaines">MFT</abbr>';
+
+  const regexAbbrSGRH = /(?<!(\w))SGRH(?!(\w))/g;
+  const AbbrSGRH = '<abbr title="Syst&egrave;me de gestion des ressources humaines">SGRH</abbr>';
+
+function ConvertFra() {
+  
+  $("#loading").show().delay(300).slideDown(300);
+  setTimeout(
+    function() 
+    {
+
+  const imageFolder = $("#imageFolder").val();
+  let textOrigin = $("#textOrigin").val(); 
+
+  //ABBR
+  
+
   textResult = textOrigin.replaceAll(regexWidth, "");
   textResult = textResult.replaceAll(regexTable, tableBordered);
   textResult = textResult.replaceAll(regexNames, "");
@@ -159,7 +112,54 @@ function ConvertEng() {
   textResult = textResult.replaceAll(regexBRall, "");
   textResult = textResult.replaceAll(regexTD, "<td>");
   textResult = textResult.replaceAll(regexEM, "");
-  textResult = textResult.replaceAll("<h2><strong>", "<h2>");
+  textResult = textResult.replaceAll(regexHtwo, "<h2>");
+  textResult = textResult.replaceAll("</strong></h2>", "</h2>");
+
+  //ABBR
+  textResult = textResult.replaceAll(regexAbbrSGRH, AbbrSGRH);
+  textResult = textResult.replaceAll(regexAbbrCIDP, AbbrCIDP);
+
+  textResult = textResult.replaceAll(regexAbbrMFT, AbbrMFT);
+
+  textResult = textResult.replaceAll(regexAbbrRH, AbbrRH);
+  textResult = textResult.replaceAll(regexAbbrCR, AbbrCR);
+
+
+  console.log(textResult);
+  $("#textResult").val(textResult);
+
+alert("Conversion complété");
+  $("#loading").hide().delay(300).slideUp(300);
+}, 500);
+}
+
+
+
+
+
+function ConvertEng() {
+  $("#loading").show().delay(300).slideDown(300);
+  setTimeout(
+    function() 
+    { 
+
+  //const imageFolder = $("#imageFolder").val();
+  let textOrigin = $("#textOrigin").val(); 
+
+  
+
+  textResult = textOrigin.replaceAll(regexWidth, "");
+  textResult = textResult.replaceAll(regexTable, tableBordered);
+  textResult = textResult.replaceAll(regexNames, "");
+  textResult = textResult.replaceAll(regexDiv, "");
+  textResult = textResult.replaceAll(regexTR, regexTRactive);
+  textResult = textResult.replaceAll('align="center"', "");
+  textResult = textResult.replaceAll(regexSpaces, "");
+  textResult = textResult.replaceAll(regexBR, "");
+  textResult = textResult.replaceAll(regexBRall, "");
+  textResult = textResult.replaceAll(regexTD, "<td>");
+  textResult = textResult.replaceAll(regexEM, "");
+  textResult = textResult.replaceAll(regexHtwo, "<h2>");
   textResult = textResult.replaceAll("</strong></h2>", "</h2>");
   //ABBR
   textResult = textResult.replaceAll(regexAbbrPSHCP, AbbrPSHCP);
