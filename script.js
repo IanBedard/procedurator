@@ -48,11 +48,14 @@ function ConvertFra() {
   textResult = textResult.replaceAll(regexNames, "");
   textResult = textResult.replaceAll(regexDiv, "");
   textResult = textResult.replaceAll(regexTR, regexTRactive);
+  textResult = textResult.replaceAll('align="center"', "");
   textResult = textResult.replaceAll(regexSpaces, "");
   textResult = textResult.replaceAll(regexBR, "");
   textResult = textResult.replaceAll(regexBRall, "");
   textResult = textResult.replaceAll(regexTD, "<td>");
   textResult = textResult.replaceAll(regexEM, "");
+  textResult = textResult.replaceAll("<h2><strong>", "<h2>");
+  textResult = textResult.replaceAll("</strong></h2>", "</h2>");
 
   //ABBR
   textResult = textResult.replaceAll(regexAbbrSGRH, AbbrSGRH);
@@ -150,11 +153,14 @@ function ConvertEng() {
   textResult = textResult.replaceAll(regexNames, "");
   textResult = textResult.replaceAll(regexDiv, "");
   textResult = textResult.replaceAll(regexTR, regexTRactive);
+  textResult = textResult.replaceAll('align="center"', "");
   textResult = textResult.replaceAll(regexSpaces, "");
   textResult = textResult.replaceAll(regexBR, "");
   textResult = textResult.replaceAll(regexBRall, "");
   textResult = textResult.replaceAll(regexTD, "<td>");
   textResult = textResult.replaceAll(regexEM, "");
+  textResult = textResult.replaceAll("<h2><strong>", "<h2>");
+  textResult = textResult.replaceAll("</strong></h2>", "</h2>");
   //ABBR
   textResult = textResult.replaceAll(regexAbbrPSHCP, AbbrPSHCP);
   textResult = textResult.replaceAll(regexAbbrQPIP, AbbrQPIP);
