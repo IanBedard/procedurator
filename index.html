@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Procedurator</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<link rel="stylesheet" href="./body.css">
+<link rel="icon" href="img/Asset 1.png">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="./bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+<div id="title">
+
+ <div class="col-md-10"><h1>Procedurator v0.4</h1>
+  <p>Paste the Dreamweaver converted html content in the Upload text Area.</p>
+  <p>Click the french/english button depending on which abbreviations you want to apply.</p>
+</div>
+ <div class="col-md-2"><img src="img/Asset 3.png"></div>
+
+</div>
+
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+        What to paste in the Upload area ?
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample" >
+      <div class="card text-white bg-primary codes">
+        <div class="card-body">
+          <pre><code>
+            <span class="grey">&lt;!-- Start of Main Content --&gt</span>
+            &lt;<span class="pink">h1</span> <span class="blue">property</span>=<span class="yellow">"name"</span> <span class="blue">id</span>=<span class="yellow">"wb-cont"</span>&gtTITLE&lt;/<span class="pink">h1</span>&gt
+            &lt;<span class="pink">div</span> <span class="blue">class</span>=<span class="yellow">"alert alert-info"</span>&gt
+             &lt;<span class="pink">p</span>&gt&lt;<span class="pink">strong</span>&gtImportant&lt;/<span class="pink">strong</span>&gt: 
+             Document references listed in italics on this page can be found on 
+             &lt;<span class="pink">a</span> <span class="blue">href</span>=<span class="yellow">"https://gcintranet.tpsgc-pwgsc.gc.ca/remuneration-compensation/procedures/recherche-search-eng.html"</span>&gt
+             Phoenix procedures, job aids and instructions&lt;/<span class="pink">a</span>&gt.&lt;/<span class="pink">p</span>&gt
+          &lt;/<span class="pink">div</span>&gt
+         <span class="grey"> &lt;!--Under this--&gt  
+    *
+    <span class="green">The text is normally found here</span>
+    *
+          &lt;!--On top of this--&gt</span>
+          &lt;<span class="pink">div</span> <span class="blue">class</span>=<span class="yellow">"row pagedetails"</span>&gt
+          &lt;<span class="pink">div</span> <span class="blue">class</span>=<span class="yellow">"col-sm-5 col-xs-12 datemod"</span>&gt
+          &lt;<span class="pink">dl</span> <span class="blue">id</span>=<span class="yellow">"wb-dtmd"</span>&gt
+          &lt;<span class="pink">dt</span>&gtDate modified:&#32; &lt;/<span class="pink">dt</span>&gt
+        </code></pre>
+        </div>
+      </div>
+    </div>
+
+  </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Images in your document? Click here
+        </button>
+      </h2>
+      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample" >
+        <div class="accordion-body">
+
+
+          <div class="form-group">
+            <label for="imageFolder" class="form-label mt-4">Images folder</label>&nbsp;<span class="badge rounded-pill bg-warning">Under construction</span>
+            <input type="text" class="form-control" id="imageFolder" aria-describedby="imagesHelp" placeholder="Enter folder name">
+            <small id="imagesHelp" class="form-text text-muted">Only write the folder name, the images under should be named like (/1-eng.jpg)</small>
+   
+
+         <!-- <fieldset>
+            <legend class="mt-4">Apply accordeons to:</legend>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="accordeonH2">
+              <label class="form-check-label" for="accordeonH2">h2</label>
+            </div>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="accordeonH3">
+              <label class="form-check-label" for="accordeonH3">h3</label>
+            </div>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="accordeonH4">
+              <label class="form-check-label" for="accordeonH4">h4</label>
+            </div>
+          </fieldset>  --> 
+        </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+    <div class="form-group row">
+        
+        <div class="col-md-6"> 
+      
+          <label for="textOrigin" class="form-label mt-4">Upload :</label>
+            <textarea rows="20" class="form-control" type="text" id="textOrigin" name="textOrigin" value="textOrigin" placeholder="Paste the text here"></textarea>
+    
+            <div class="buttons">
+            <button type="button" class="btn btn-success" onclick="ConvertEng()">English Conversion</button> 
+            <button type="button" class="btn btn-success" onclick="ConvertFra()">Conversion Francaise</button>
+   
+          </div>
+        </div>
+        <div class="col-md-6">
+            <label for="textResult"  class="form-label mt-4 ">Converted:</label>
+            <textarea rows="20" class="form-control" type="text" id="textResult" name="textResult" value="textResult" placeholder="Text converted"></textarea>
+            <div class="buttons">
+              <button type="button" class="btn btn-info" id="copy" onclick="CopyToClipboard(textResult)">Click to copy</button>
+              </div><div>
+        </div>
+    </div>
+
+
+</div>
+<footer class="bg-primary text-white">
+  <div class="progress" id="loading">
+    <div class="progress-bar progress-bar-striped bg-info progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+  </div>
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    Procedurator made by: 
+    <a class="text-dark" href="https://ianb.digital/">ianbdigital</a>
+  </div>
+
+</footer>
+  <script src="script.js"></script>
+</body>
+  </html>
