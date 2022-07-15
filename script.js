@@ -75,7 +75,7 @@ function ConvertEng() {
   $("#loading").show().delay(300).slideDown(300);
   setTimeout(
     function() 
-    {
+    { 
 
   //const imageFolder = $("#imageFolder").val();
   let textOrigin = $("#textOrigin").val(); 
