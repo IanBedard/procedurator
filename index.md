@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## Procedurator
 
 You can use the [editor on GitHub](https://github.com/IanBedard/procedurator/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
@@ -9,6 +9,38 @@ Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://j
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
 ```markdown
+/*accordions to images */
+function image() {
+
+  const imagePrefix = `
+  <ul class="list-unstyled" id="duties-a">
+  <li><details><summary>
+  `;
+
+    let textResult = $("#textResult").val(); 
+    const regexFigureStart = /<p><strong>Figure \d(.)*<\/strong>/g;
+    const regexFigureEnd = /(?<=<\/summary>)(.)*<\/p>/g;
+
+  foundFigureStart = textResult.match(regexFigureStart);
+
+  for( let headers of  foundFigureStart){
+  console.log(2);
+    let headersApplied = (imagePrefix.concat(headers).concat("</summary>"))
+    textResult = textResult.replaceAll(headers, headersApplied)
+ 
+  };
+      
+  foundFigureEnd = textResult.match(regexFigureEnd);
+
+  for( let headers of  foundFigureEnd){
+  
+    let headersApplied = ("<p>".concat(headers).concat("<details/></li></ul>"))
+    textResult = textResult.replaceAll(headers, headersApplied)
+ 
+  };
+  $("#textResult").val(textResult);
+  }
+  
 Syntax highlighted code block
 
 # Header 1
