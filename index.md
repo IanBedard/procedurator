@@ -1,13 +1,13 @@
 ## Procedurator
 
 
+sadasadsda
 
-### Markdown
+### How the app works
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Procedurator is a ...
 
 ```markdown
-/*accordions to images */
 function image() {
 
   const imagePrefix = `
@@ -38,29 +38,10 @@ function image() {
   };
   $("#textResult").val(textResult);
   }
-  
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
 ```
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+For more details see my [script.js file]([https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax](https://github.com/IanBedard/procedurator/blob/main/script.js)).
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/IanBedard/procedurator/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
 
 ### Support or Contact
 
