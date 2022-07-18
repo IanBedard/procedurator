@@ -1,5 +1,5 @@
 ## Procedurator
-
+To see the application live [click here](http://procedurator.ianb.digital/).
 
 Procedurator is a dreamweaver(xml=>html) corrector and style applier for governement styling for the PSPC. The applications runs multiple regex script that converts the html given to a repaired version. It can also agglomerate code depending on the tag and convert it to an accordion.
 
