@@ -14,7 +14,7 @@ const regexWidth = /(((width=")+(\d*(%|px)?)")?)+(\s*(valign="top"))?/g;
   const regexDiv =
     /<div>(((\n.*?)(<div>(\s*)<\/div>\n.*?)*(\n*)*)|(\s*))<\/div>/g;
 ```
-for more complicated search and replace, the application will loop a regex serach through the converted code and apply a agglomaration of governement styling.
+for more complicated search and replace, the application will loop a regex search throughout the converted code and apply an agglomaration of governement styling.
 
 ```markdown
 function image() {
@@ -49,5 +49,5 @@ function image() {
   }
 ```
 
-For more details see my [script.js file]([https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax](https://github.com/IanBedard/procedurator/blob/main/script.js)).
+For more details see my [script.js file](https://github.com/IanBedard/procedurator/blob/main/script.js).
 
