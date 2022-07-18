@@ -14,7 +14,7 @@
     <div class="container">
 <div id="title">
 
- <div class="col-md-10"><h1>Procedurator v0.4</h1>
+ <div class="col-md-10"><h1>Procedurator v1.0</h1>
   <p>Paste the Dreamweaver converted html content in the Upload text Area.</p>
   <p>Click the french/english button depending on which abbreviations you want to apply.</p>
 </div>
@@ -56,56 +56,50 @@
     </div>
 
   </div>
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingTwo">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Images in your document? Click here
-        </button>
-      </h2>
-      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample" >
-        <div class="accordion-body">
-
-
-          <div class="form-group">
-            <label for="imageFolder" class="form-label mt-4">Images folder</label>&nbsp;<span class="badge rounded-pill bg-warning">Under construction</span>
-            <input type="text" class="form-control" id="imageFolder" aria-describedby="imagesHelp" placeholder="Enter folder name">
-            <small id="imagesHelp" class="form-text text-muted">Only write the folder name, the images under should be named like (/1-eng.jpg)</small>
-   
-
-         <!-- <fieldset>
-            <legend class="mt-4">Apply accordeons to:</legend>
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="accordeonH2">
-              <label class="form-check-label" for="accordeonH2">h2</label>
-            </div>
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="accordeonH3">
-              <label class="form-check-label" for="accordeonH3">h3</label>
-            </div>
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="accordeonH4">
-              <label class="form-check-label" for="accordeonH4">h4</label>
-            </div>
-          </fieldset>  --> 
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwo">
+      <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseOne">
+        Accordeons footer  <span class="badge bg-warning">Important</span> 
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample" >
+      <div class="accordion-body"><p>You will have to paste this content where you want the accordeons to end</p>
+     </div> <div class="card text-white bg-primary codes">
+        <div class="card-body">
+          <pre><code>
+      &lt;/<span class="pink">details</span>&gt
+      &lt;/<span class="pink">li</span>&gt
+      &lt;/<span class="pink">ul</span>&gt
+    </code></pre>
         </div>
-        </div>
-      </div>
+      </div> 
     </div>
+
+  </div>
+
+</div>
+<div class="alert alert-dismissible alert-info">
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  <strong>Heads up!</strong> When applying accordeons or images accordeons, please make sure there is no duplicate.
 </div>
 
 
-
     <div class="form-group row">
-        
+      <div class="col-md-12"> 
+      
+        <label for="textOrigin" class="form-label mt-4">images :</label>
+          <textarea rows="1" class="form-control" type="text" id="imageFolder" name="imageFolder" value="imageFolder" placeholder="write the name of the image folder here"></textarea>
+
+      </div>
         <div class="col-md-6"> 
       
           <label for="textOrigin" class="form-label mt-4">Upload :</label>
             <textarea rows="20" class="form-control" type="text" id="textOrigin" name="textOrigin" value="textOrigin" placeholder="Paste the text here"></textarea>
     
             <div class="buttons">
-            <button type="button" class="btn btn-success" onclick="ConvertEng()">English Conversion</button> 
-            <button type="button" class="btn btn-success" onclick="ConvertFra()">Conversion Francaise</button>
-   
+            <button type="button" class="btn btn-primary" onclick="ConvertEng()">English Conversion</button> 
+            <button type="button" class="btn btn-primary" onclick="ConvertFra()">Conversion Francaise</button>
+          
           </div>
         </div>
         <div class="col-md-6">
@@ -113,22 +107,15 @@
             <textarea rows="20" class="form-control" type="text" id="textResult" name="textResult" value="textResult" placeholder="Text converted"></textarea>
             <div class="buttons">
               <button type="button" class="btn btn-info" id="copy" onclick="CopyToClipboard(textResult)">Click to copy</button>
+              <button type="button" class="btn btn-light" onclick="expand()">H3 => Accordeons</button>
+              <button type="button" class="btn btn-light" onclick="image()">Apply images</button>
               </div><div>
         </div>
     </div>
 
 
 </div>
-<footer class="bg-primary text-white">
-  <div class="progress" id="loading">
-    <div class="progress-bar progress-bar-striped bg-info progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
-  </div>
-  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-    Procedurator made by: 
-    <a class="text-dark" href="https://ianb.digital/">ianbdigital</a>
-  </div>
 
-</footer>
   <script src="script.js"></script>
 </body>
   </html>

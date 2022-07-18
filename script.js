@@ -13,7 +13,7 @@ const regexWidth = /(((width=")+(\d*(%|px)?)")?)+(\s*(valign="top"))?/g;
   const regexBRall = /<\w*><br(\s(clear="all"))>(\n.*?)?<\/\w*>/g;
   const regexEM = /<\/em><em>/g;
   const regexHtwo = /<h2(.)*><strong>/g;
-  
+  const regexEmptyHtml = /<.*><\/.*>/g
   const regexTRactive = `<table class="table table-bordered table-hover">
     <tr class="active">`;
   const tableBordered = '<table class="table table-bordered table-hover">';
@@ -114,7 +114,7 @@ function ConvertFra() {
   textResult = textResult.replaceAll(regexEM, "");
   textResult = textResult.replaceAll(regexHtwo, "<h2>");
   textResult = textResult.replaceAll("</strong></h2>", "</h2>");
-
+  textResult = textResult.replaceAll(regexEmptyHtml, "");
   //ABBR
   textResult = textResult.replaceAll(regexAbbrSGRH, AbbrSGRH);
   textResult = textResult.replaceAll(regexAbbrCIDP, AbbrCIDP);
@@ -161,6 +161,7 @@ function ConvertEng() {
   textResult = textResult.replaceAll(regexEM, "");
   textResult = textResult.replaceAll(regexHtwo, "<h2>");
   textResult = textResult.replaceAll("</strong></h2>", "</h2>");
+  textResult = textResult.replaceAll(regexEmptyHtml, "");
   //ABBR
   textResult = textResult.replaceAll(regexAbbrPSHCP, AbbrPSHCP);
   textResult = textResult.replaceAll(regexAbbrQPIP, AbbrQPIP);
@@ -198,3 +199,82 @@ function CopyToClipboard(textid) {
   navigator.clipboard.writeText(textResult);
   console.log(textResult);
 }
+
+
+
+
+function expand() {
+
+const dashboardPrefix = `
+</details></li>
+<li>
+<details>
+<summary>
+`;
+const dashboardTop = `
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-primary wb-toggle btn-sm mrgn-rght-sm" data-toggle='{"selector": "details", "parent": "#duties-a", "type": "on"}'>Expand all</button>
+<button type="button" class="btn btn-primary wb-toggle btn-sm" data-toggle='{"selector": "details", "parent": "#duties-a", "type": "off"}'>Collapse all</button>
+  </div>
+
+    <div class="clearfix"></div>
+<ul class="list-unstyled" id="duties-a">
+<li><details><summary>
+`;
+const dashboardPostfix = "</summary>";
+  let textResult = $("#textResult").val(); 
+  const regexH3 = /<h3.*>(.)*<\/h3>/g;
+
+found = textResult.match(regexH3);
+
+
+
+for( let headers of found.slice(1)){
+
+  let headersApplied = (dashboardPrefix.concat(headers).concat(dashboardPostfix))
+  textResult = textResult.replaceAll(headers, headersApplied)
+
+
+};
+let firstHeadersApplied = (dashboardTop.concat(found[0]).concat(dashboardPostfix))
+textResult = textResult.replaceAll(found[0], firstHeadersApplied)
+
+
+$("#textResult").val(textResult);
+}
+
+
+
+
+
+function image() {
+
+  const imagePrefix = `
+  <ul class="list-unstyled" id="duties-a">
+  <li><details><summary>
+  `;
+
+    let textResult = $("#textResult").val(); 
+    const regexFigureStart = /<p><strong>Figure \d(.)*<\/strong>/g;
+    const regexFigureEnd = /(?<=<\/summary>)(.)*<\/p>/g;
+
+  foundFigureStart = textResult.match(regexFigureStart);
+
+  for( let headers of  foundFigureStart){
+  console.log(2);
+    let headersApplied = (imagePrefix.concat(headers).concat("</summary>"))
+    textResult = textResult.replaceAll(headers, headersApplied)
+ 
+  };
+      
+  foundFigureEnd = textResult.match(regexFigureEnd);
+
+  for( let headers of  foundFigureEnd){
+  
+    let headersApplied = ("<p>".concat(headers).concat("<details/></li></ul>"))
+    textResult = textResult.replaceAll(headers, headersApplied)
+ 
+  };
+  $("#textResult").val(textResult);
+  }
+  
