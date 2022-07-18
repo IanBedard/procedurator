@@ -1,7 +1,7 @@
 ## Procedurator
 To see the application live [click here](http://procedurator.ianb.digital/).
 
-Procedurator is a dreamweaver(xml=>html | from the design window convertor) corrector and style applier for PSPS governement styling (WET-BOEW). The applications runs multiple regex script that converts the html given to a repaired version. It can also agglomerate code depending on the tag and convert it to an accordion.
+Procedurator is a dreamweaver((xml=>html) - from the design window convertor) corrector and style applier for PSPC governement styling (WET-BOEW).| The applications runs multiple regex script that converts the html given to a repaired version. It can also agglomerate code depending on the tag and convert it to an accordion.
 
 ### How the app works
 The application basically works by running multiple line of regex and searching throughout the code and replacing it by nothing ("") or by a correction/governement styling.
