@@ -202,7 +202,7 @@ function CopyToClipboard(textid) {
 
 
 
-
+/*accordions to h3 */
 function expand() {
 
 const dashboardPrefix = `
@@ -246,7 +246,7 @@ $("#textResult").val(textResult);
 
 
 
-
+/*accordions to images */
 function image() {
 
   const imagePrefix = `
