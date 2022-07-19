@@ -12,7 +12,7 @@ const regexTD = /<td(\s)*([\w,\s,=,"]*)>/g;
 const regexBRall = /<\w*><br(\s(clear="all"))>(\n.*?)?<\/\w*>/g;
 const regexEM = /<\/em><em>/g;
 const regexHtwo = /<h2(.)*><strong>/g;
-const regexEmptyHtml = /<.*><\/.*>/g;
+
 const regexTRactive = `<table class="table table-bordered table-hover">
     <tr class="active">`;
 const tableBordered = '<table class="table table-bordered table-hover">';
@@ -106,7 +106,7 @@ function ConvertFra() {
     textResult = textResult.replaceAll(regexEM, "");
     textResult = textResult.replaceAll(regexHtwo, "<h2>");
     textResult = textResult.replaceAll("</strong></h2>", "</h2>");
-    textResult = textResult.replaceAll(regexEmptyHtml, "");
+  
     //ABBR
     textResult = textResult.replaceAll(regexAbbrSGRH, AbbrSGRH);
     textResult = textResult.replaceAll(regexAbbrCIDP, AbbrCIDP);
@@ -143,7 +143,7 @@ function ConvertEng() {
     textResult = textResult.replaceAll(regexEM, "");
     textResult = textResult.replaceAll(regexHtwo, "<h2>");
     textResult = textResult.replaceAll("</strong></h2>", "</h2>");
-    textResult = textResult.replaceAll(regexEmptyHtml, "");
+
     //ABBR
     textResult = textResult.replaceAll(regexAbbrPSHCP, AbbrPSHCP);
     textResult = textResult.replaceAll(regexAbbrQPIP, AbbrQPIP);
