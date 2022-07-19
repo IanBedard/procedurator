@@ -95,7 +95,7 @@ function ConvertFra() {
 
     textResult = textOrigin.replaceAll(regexWidth, "");
     textResult = textOrigin.replaceAll(regexName, "");
-    textResult = textResult.replaceAll(regexTable, tableBordered);
+
 
     textResult = textResult.replaceAll(regexDiv, "");
     textResult = textResult.replaceAll(regexTR, regexTRactive);
@@ -107,7 +107,7 @@ function ConvertFra() {
     textResult = textResult.replaceAll(regexEM, "");
     textResult = textResult.replaceAll(regexHtwo, "<h2>");
     textResult = textResult.replaceAll("</strong></h2>", "</h2>");
-  
+    textResult = textResult.replaceAll(regexTable, tableBordered);
     //ABBR
     textResult = textResult.replaceAll(regexAbbrSGRH, AbbrSGRH);
     textResult = textResult.replaceAll(regexAbbrCIDP, AbbrCIDP);
@@ -132,7 +132,7 @@ function ConvertEng() {
     let textOrigin = $("#textOrigin").val();
 
     textResult = textOrigin.replaceAll(regexWidth, "");
-    textResult = textResult.replaceAll(regexTable, tableBordered);
+
     textResult = textOrigin.replaceAll(regexName, "");
     textResult = textResult.replaceAll(regexDiv, "");
     textResult = textResult.replaceAll(regexTR, regexTRactive);
@@ -144,7 +144,7 @@ function ConvertEng() {
     textResult = textResult.replaceAll(regexEM, "");
     textResult = textResult.replaceAll(regexHtwo, "<h2>");
     textResult = textResult.replaceAll("</strong></h2>", "</h2>");
-
+    textResult = textResult.replaceAll(regexTable, tableBordered);
     //ABBR
     textResult = textResult.replaceAll(regexAbbrPSHCP, AbbrPSHCP);
     textResult = textResult.replaceAll(regexAbbrQPIP, AbbrQPIP);
