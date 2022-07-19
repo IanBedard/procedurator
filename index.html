@@ -87,7 +87,7 @@
 
     <div class="form-group row">
 
-        <div class="col-md-6"> 
+        <div class="col-md-5"> 
       
           <label for="textOrigin" class="form-label mt-4">Upload :</label>
             <textarea rows="20" class="form-control" type="text" id="textOrigin" name="textOrigin" value="textOrigin" placeholder="Paste the text here"></textarea>
@@ -98,18 +98,25 @@
           
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-5">
             <label for="textResult"  class="form-label mt-4 ">Converted:</label>
             <textarea rows="20" class="form-control" type="text" id="textResult" name="textResult" value="textResult" placeholder="Text converted"></textarea>
             <div class="buttons">
+            
               <button type="button" class="btn btn-info" id="copy" onclick="CopyToClipboard(textResult)">Click to copy</button>
-              <button type="button" class="btn btn-light" onclick="expand()">H3 => Accordions</button>
-              <button type="button" class="btn btn-light" onclick="image()">Images => Accordions</button>
-              <button type="button" class="btn btn-light" onclick="idApplier()">H2 Applier</button>
-              <button type="button" class="btn btn-light" onclick="nameRemover()">name remover</button>
-              </div><div>
+
+              </div>
+        </div>
+        <div class="col-md-2 buttons-space">
+          <button type="button" class="btn btn-success" onclick="nameRemover()">name remover</button>
+          <button type="button" class="btn btn-success" onclick="idApplier()">H2 Applier</button>
+          <button type="button" class="btn btn-light" onclick="expand()">H3 => Accordions</button>
+          <button type="button" class="btn btn-light" onclick="image()">Images => Accordions</button>
+
+
         </div>
     </div>
+
 
 
 </div>

@@ -49,3 +49,10 @@ footer {
     text-align: center;
   
 }
+.buttons-space button{
+width: 120px;
+margin-bottom:10px ;
+}
+.buttons-space{
+padding-top: 10%;
+  }

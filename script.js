@@ -4,7 +4,7 @@ const regexWidth = /(((width=")+(\d*(%|px)?)")?)+(\s*(valign="top"))?/g;
 const regexBR = /<br(\/)?>(\n.*?)?(?!<\/\w*>)/g;
 const regexTable = /<table .*>/g;
 const regexSpaces = /(<\w*>)(&nbsp;|\s)?(<\/\w*>)/g;
-const regexName = /<a name=".*"><\/a>/g;
+const regexName = /(<a name="(.{1,15})">(\s)?<\/a>)/g;
 const regexDiv =
   /<div>(((\n.*?)(<div>(\s*)<\/div>\n.*?)*(\n*)*)|(\s*))<\/div>/g;
 const regexTR = /<table class="table table-bordered table-hover">(\n.*?)<tr>/g;
@@ -88,7 +88,7 @@ const AbbrSGRH =
 function ConvertFra() {
   $("#loading").show().delay(300).slideDown(300);
   setTimeout(function () {
-    const imageFolder = $("#imageFolder").val();
+
     let textOrigin = $("#textOrigin").val();
 
     //ABBR
@@ -119,8 +119,7 @@ function ConvertFra() {
 
     console.log(textResult);
     $("#textResult").val(textResult);
-    nameRemover()
-    idApplier()
+
     alert("Conversion complété");
     $("#loading").hide().delay(300).slideUp(300);
   }, 500);
@@ -129,7 +128,7 @@ function ConvertFra() {
 function ConvertEng() {
   $("#loading").show().delay(300).slideDown(300);
   setTimeout(function () {
-    //const imageFolder = $("#imageFolder").val();
+   
     let textOrigin = $("#textOrigin").val();
 
     textResult = textOrigin.replaceAll(regexWidth, "");
@@ -171,10 +170,10 @@ function ConvertEng() {
     textResult = textResult.replaceAll(regexAbbrCA, AbbrCA);
     textResult = textResult.replaceAll(regexAbbrEI, AbbrEI);
     textResult = textResult.replaceAll(regexAbbrPP, AbbrPP);
+
     console.log(textResult);
     $("#textResult").val(textResult);
-    nameRemover()
-    idApplier()
+
     alert("Conversion completed");
     $("#loading").hide().delay(300).slideUp(300);
   }, 500);
@@ -270,10 +269,8 @@ function idApplier() {
     let newString = (" id='"+id+"'").concat(applier);
       $("#textResult").val(textResult);
         textResult = textResult.replaceAll(applier, newString);
-    textResult = textResult.replaceAll(applier, newString);
-    console.log(headers);
-    console.log(id);
-    console.log(applier);
+   
+
     
   }
 
@@ -288,7 +285,7 @@ function nameRemover() {
   const nameContentFormat = /(?<=<a name=".*">).*(?=<\/a>)/g;
  
 allNameFound = textResult.match(names);
-  
+  console.log(allNameFound);
 
   for (let aTagWithName of allNameFound) {
 
