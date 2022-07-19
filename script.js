@@ -98,7 +98,7 @@ function ConvertFra() {
 
 
     textResult = textResult.replaceAll(regexDiv, "");
-    textResult = textResult.replaceAll(regexTR, regexTRactive);
+
     textResult = textResult.replaceAll('align="center"', "");
     textResult = textResult.replaceAll(regexSpaces, "");
     textResult = textResult.replaceAll(regexBR, "");
@@ -108,6 +108,7 @@ function ConvertFra() {
     textResult = textResult.replaceAll(regexHtwo, "<h2>");
     textResult = textResult.replaceAll("</strong></h2>", "</h2>");
     textResult = textResult.replaceAll(regexTable, tableBordered);
+  textResult = textResult.replaceAll(regexTR, regexTRactive);
     //ABBR
     textResult = textResult.replaceAll(regexAbbrSGRH, AbbrSGRH);
     textResult = textResult.replaceAll(regexAbbrCIDP, AbbrCIDP);
@@ -135,7 +136,7 @@ function ConvertEng() {
 
     textResult = textOrigin.replaceAll(regexName, "");
     textResult = textResult.replaceAll(regexDiv, "");
-    textResult = textResult.replaceAll(regexTR, regexTRactive);
+
     textResult = textResult.replaceAll('align="center"', "");
     textResult = textResult.replaceAll(regexSpaces, "");
     textResult = textResult.replaceAll(regexBR, "");
@@ -145,6 +146,7 @@ function ConvertEng() {
     textResult = textResult.replaceAll(regexHtwo, "<h2>");
     textResult = textResult.replaceAll("</strong></h2>", "</h2>");
     textResult = textResult.replaceAll(regexTable, tableBordered);
+        textResult = textResult.replaceAll(regexTR, regexTRactive);
     //ABBR
     textResult = textResult.replaceAll(regexAbbrPSHCP, AbbrPSHCP);
     textResult = textResult.replaceAll(regexAbbrQPIP, AbbrQPIP);
@@ -251,6 +253,11 @@ function image() {
 }
 
 /*h2 id */
+/*
+to add: 
+On this page:
+href="id"
+*/
 function idApplier() {
 
   let textResult = $("#textResult").val();
