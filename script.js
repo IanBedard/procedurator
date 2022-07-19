@@ -4,7 +4,7 @@ const regexWidth = /(((width=")+(\d*(%|px)?)")?)+(\s*(valign="top"))?/g;
 const regexBR = /<br(\/)?>(\n.*?)?(?!<\/\w*>)/g;
 const regexTable = /<table .*>/g;
 const regexSpaces = /(<\w*>)(&nbsp;|\s)?(<\/\w*>)/g;
-
+const regexName = /<a name=".*"><\/a>/g;
 const regexDiv =
   /<div>(((\n.*?)(<div>(\s*)<\/div>\n.*?)*(\n*)*)|(\s*))<\/div>/g;
 const regexTR = /<table class="table table-bordered table-hover">(\n.*?)<tr>/g;
@@ -94,6 +94,7 @@ function ConvertFra() {
     //ABBR
 
     textResult = textOrigin.replaceAll(regexWidth, "");
+    textResult = textOrigin.replaceAll(regexName, "");
     textResult = textResult.replaceAll(regexTable, tableBordered);
 
     textResult = textResult.replaceAll(regexDiv, "");
@@ -133,7 +134,7 @@ function ConvertEng() {
 
     textResult = textOrigin.replaceAll(regexWidth, "");
     textResult = textResult.replaceAll(regexTable, tableBordered);
-
+    textResult = textOrigin.replaceAll(regexName, "");
     textResult = textResult.replaceAll(regexDiv, "");
     textResult = textResult.replaceAll(regexTR, regexTRactive);
     textResult = textResult.replaceAll('align="center"', "");
