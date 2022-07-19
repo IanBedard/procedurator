@@ -118,7 +118,7 @@ function ConvertFra() {
 
     console.log(textResult);
     $("#textResult").val(textResult);
-
+    idApplier()
     alert("Conversion complété");
     $("#loading").hide().delay(300).slideUp(300);
   }, 500);
@@ -171,7 +171,7 @@ function ConvertEng() {
     textResult = textResult.replaceAll(regexAbbrPP, AbbrPP);
     console.log(textResult);
     $("#textResult").val(textResult);
-
+    idApplier()
     alert("Conversion completed");
     $("#loading").hide().delay(300).slideUp(300);
   }, 500);
@@ -245,5 +245,34 @@ function image() {
     let headersApplied = "<p>".concat(headers).concat("<details/></li></ul>");
     textResult = textResult.replaceAll(headers, headersApplied);
   }
+  $("#textResult").val(textResult);
+}
+
+/*h2 id */
+function idApplier() {
+
+  let textResult = $("#textResult").val();
+  const regexH2 = /(<h2>)(.)*(<\/h2>)/g;
+  const regexH2IdApplier = /(>)(.)*(<\/h2>)/g
+  const regexH2idFormat = /(?<=<h2>)(.)*(?=<\/h2>)/g;
+  const space = /\s/g;
+
+  foundFigureStart = textResult.match(regexH2);
+  
+
+  for (let headers of foundFigureStart) {
+    let id =   headers.match(regexH2idFormat);
+    id = String(id).replace(space,"-");
+    let applier =  headers.match(regexH2IdApplier);
+    let newString = (" id='"+id+"'").concat(applier);
+      $("#textResult").val(textResult);
+    textResult = textResult.replaceAll(applier, newString);
+    console.log(headers);
+    console.log(id);
+    console.log(applier);
+    
+  }
+
+  
   $("#textResult").val(textResult);
 }
