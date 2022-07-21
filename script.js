@@ -7,15 +7,17 @@ const regexSpaces = /(<\w*>)(&nbsp;|\s)?(<\/\w*>)/g;
 const regexName = /(<a name="(.{1,15})">(\s)?<\/a>)/g;
 const regexDiv =
   /<div>(((\n.*?)(<div>(\s*)<\/div>\n.*?)*(\n*)*)|(\s*))<\/div>/g;
-const regexTR = /<table class="table table-bordered table-hover">(\n.*?)<tr>/g;
+
 const regexTD = /<td(\s)*([\w,\s,=,"]*)>/g;
 const regexBRall = /<\w*><br(\s(clear="all"))>(\n.*?)?<\/\w*>/g;
 const regexEM = /<\/em><em>/g;
 const regexHtwo = /<h2(.)*><strong>/g;
-
-const regexTRactive = `<table class="table table-bordered table-hover">
-    <tr class="active">`;
-const tableBordered = '<table class="table table-bordered table-hover">';
+const regexTR =
+  /<table class="table table-bordered" style="table-layout: fixed;">(\n.*?)<tr>/g;
+const regexTRactive = `<table class="table table-bordered" style="table-layout: fixed;">
+    <th class="label-default-active">`;
+const tableBordered =
+  '<table class="table table-bordered" style="table-layout: fixed;">';
 
 //abbr ENG */
 const regexAbbrCA = /(?<!(\w))CA(?!(\w))/g;
@@ -86,104 +88,91 @@ const AbbrSGRH =
   '<abbr title="Syst&egrave;me de gestion des ressources humaines">SGRH</abbr>';
 
 function ConvertFra() {
-  $("#loading").show().delay(300).slideDown(300);
-  setTimeout(function () {
+  let textOrigin = $("#textOrigin").val();
 
-    let textOrigin = $("#textOrigin").val();
+  //ABBR
 
-    //ABBR
+  textResult = textOrigin.replaceAll(regexWidth, "");
+  textResult = textOrigin.replaceAll(regexName, "");
 
-    textResult = textOrigin.replaceAll(regexWidth, "");
-    textResult = textOrigin.replaceAll(regexName, "");
-
-
-    textResult = textResult.replaceAll(regexDiv, "");
-
-    textResult = textResult.replaceAll('align="center"', "");
-    textResult = textResult.replaceAll(regexSpaces, "");
-    textResult = textResult.replaceAll(regexBR, "");
-    textResult = textResult.replaceAll(regexBRall, "");
-    textResult = textResult.replaceAll(regexTD, "<td>");
-    textResult = textResult.replaceAll(regexEM, "");
-    textResult = textResult.replaceAll(regexHtwo, "<h2>");
-    textResult = textResult.replaceAll("</strong></h2>", "</h2>");
-    textResult = textResult.replaceAll(regexTable, tableBordered);
+  textResult = textResult.replaceAll(regexDiv, "");
+  textResult = textResult.replaceAll('align="center"', "");
+  textResult = textResult.replaceAll(regexSpaces, "");
+  textResult = textResult.replaceAll(regexBR, "");
+  textResult = textResult.replaceAll(regexBRall, "");
+  textResult = textResult.replaceAll(regexTD, "<td>");
+  textResult = textResult.replaceAll(regexEM, "");
+  textResult = textResult.replaceAll(regexHtwo, "<h2>");
+  textResult = textResult.replaceAll("</strong></h2>", "</h2>");
+  textResult = textResult.replaceAll(regexTable, tableBordered);
   textResult = textResult.replaceAll(regexTR, regexTRactive);
-    //ABBR
-    textResult = textResult.replaceAll(regexAbbrSGRH, AbbrSGRH);
-    textResult = textResult.replaceAll(regexAbbrCIDP, AbbrCIDP);
+  //ABBR
+  textResult = textResult.replaceAll(regexAbbrSGRH, AbbrSGRH);
+  textResult = textResult.replaceAll(regexAbbrCIDP, AbbrCIDP);
 
-    textResult = textResult.replaceAll(regexAbbrMFT, AbbrMFT);
+  textResult = textResult.replaceAll(regexAbbrMFT, AbbrMFT);
 
-    textResult = textResult.replaceAll(regexAbbrRH, AbbrRH);
-    textResult = textResult.replaceAll(regexAbbrCR, AbbrCR);
+  textResult = textResult.replaceAll(regexAbbrRH, AbbrRH);
+  textResult = textResult.replaceAll(regexAbbrCR, AbbrCR);
 
-    console.log(textResult);
-    $("#textResult").val(textResult);
-
-    alert("Conversion complété");
-    $("#loading").hide().delay(300).slideUp(300);
-  }, 500);
+  $("#textResult").val(textResult);
+  tdToTh();
+  nameRemover();
+  idApplier();
 }
 
 function ConvertEng() {
-  $("#loading").show().delay(300).slideDown(300);
-  setTimeout(function () {
-   
-    let textOrigin = $("#textOrigin").val();
+  let textOrigin = $("#textOrigin").val();
 
-    textResult = textOrigin.replaceAll(regexWidth, "");
+  textResult = textOrigin.replaceAll(regexWidth, "");
 
-    textResult = textOrigin.replaceAll(regexName, "");
-    textResult = textResult.replaceAll(regexDiv, "");
+  textResult = textOrigin.replaceAll(regexName, "");
+  textResult = textResult.replaceAll(regexDiv, "");
 
-    textResult = textResult.replaceAll('align="center"', "");
-    textResult = textResult.replaceAll(regexSpaces, "");
-    textResult = textResult.replaceAll(regexBR, "");
-    textResult = textResult.replaceAll(regexBRall, "");
-    textResult = textResult.replaceAll(regexTD, "<td>");
-    textResult = textResult.replaceAll(regexEM, "");
-    textResult = textResult.replaceAll(regexHtwo, "<h2>");
-    textResult = textResult.replaceAll("</strong></h2>", "</h2>");
-    textResult = textResult.replaceAll(regexTable, tableBordered);
-        textResult = textResult.replaceAll(regexTR, regexTRactive);
-    //ABBR
-    textResult = textResult.replaceAll(regexAbbrPSHCP, AbbrPSHCP);
-    textResult = textResult.replaceAll(regexAbbrQPIP, AbbrQPIP);
-    textResult = textResult.replaceAll(regexAbbrABBR, AbbrABBR);
-    textResult = textResult.replaceAll(regexAbbrPSMIP, AbbrPSMIP);
-    textResult = textResult.replaceAll(regexAbbrPSAC, AbbrPSAC);
-    textResult = textResult.replaceAll(regexAbbrLWOP, AbbrLWOP);
-    textResult = textResult.replaceAll(regexAbbrHRMS, AbbrHRMS);
+  textResult = textResult.replaceAll('align="center"', "");
+  textResult = textResult.replaceAll(regexSpaces, "");
+  textResult = textResult.replaceAll(regexBR, "");
+  textResult = textResult.replaceAll(regexBRall, "");
+  textResult = textResult.replaceAll(regexTD, "<td>");
+  textResult = textResult.replaceAll(regexEM, "");
+  textResult = textResult.replaceAll(regexHtwo, "<h2>");
+  textResult = textResult.replaceAll("</strong></h2>", "</h2>");
+  textResult = textResult.replaceAll(regexTable, tableBordered);
+  textResult = textResult.replaceAll(regexTR, regexTRactive);
+  //ABBR
+  textResult = textResult.replaceAll(regexAbbrPSHCP, AbbrPSHCP);
+  textResult = textResult.replaceAll(regexAbbrQPIP, AbbrQPIP);
+  textResult = textResult.replaceAll(regexAbbrABBR, AbbrABBR);
+  textResult = textResult.replaceAll(regexAbbrPSMIP, AbbrPSMIP);
+  textResult = textResult.replaceAll(regexAbbrPSAC, AbbrPSAC);
+  textResult = textResult.replaceAll(regexAbbrLWOP, AbbrLWOP);
+  textResult = textResult.replaceAll(regexAbbrHRMS, AbbrHRMS);
 
-    textResult = textResult.replaceAll(regexAbbrSDB, AbbrSDB);
-    textResult = textResult.replaceAll(regexAbbrSAM, AbbrSAM);
-    textResult = textResult.replaceAll(regexAbbrCPP, AbbrCPP);
-    textResult = textResult.replaceAll(regexAbbrQPP, AbbrQPP);
-    textResult = textResult.replaceAll(regexAbbrLTD, AbbrLTD);
-    textResult = textResult.replaceAll(regexAbbrDCP, AbbrDCP);
-    textResult = textResult.replaceAll(regexAbbrLIA, AbbrLIA);
-    textResult = textResult.replaceAll(regexAbbrPRI, AbbrPRI);
-    textResult = textResult.replaceAll(regexAbbrJSM, AbbrJSM);
+  textResult = textResult.replaceAll(regexAbbrSDB, AbbrSDB);
+  textResult = textResult.replaceAll(regexAbbrSAM, AbbrSAM);
+  textResult = textResult.replaceAll(regexAbbrCPP, AbbrCPP);
+  textResult = textResult.replaceAll(regexAbbrQPP, AbbrQPP);
+  textResult = textResult.replaceAll(regexAbbrLTD, AbbrLTD);
+  textResult = textResult.replaceAll(regexAbbrDCP, AbbrDCP);
+  textResult = textResult.replaceAll(regexAbbrLIA, AbbrLIA);
+  textResult = textResult.replaceAll(regexAbbrPRI, AbbrPRI);
+  textResult = textResult.replaceAll(regexAbbrJSM, AbbrJSM);
 
-    textResult = textResult.replaceAll(regexAbbrBB, AbbrBB);
-    textResult = textResult.replaceAll(regexAbbrHR, AbbrHR);
-    textResult = textResult.replaceAll(regexAbbrDI, AbbrDI);
-    textResult = textResult.replaceAll(regexAbbrCA, AbbrCA);
-    textResult = textResult.replaceAll(regexAbbrEI, AbbrEI);
-    textResult = textResult.replaceAll(regexAbbrPP, AbbrPP);
+  textResult = textResult.replaceAll(regexAbbrBB, AbbrBB);
+  textResult = textResult.replaceAll(regexAbbrHR, AbbrHR);
+  textResult = textResult.replaceAll(regexAbbrDI, AbbrDI);
+  textResult = textResult.replaceAll(regexAbbrCA, AbbrCA);
+  textResult = textResult.replaceAll(regexAbbrEI, AbbrEI);
+  textResult = textResult.replaceAll(regexAbbrPP, AbbrPP);
+  $("#textResult").val(textResult);
 
-    console.log(textResult);
-    $("#textResult").val(textResult);
-
-    alert("Conversion completed");
-    $("#loading").hide().delay(300).slideUp(300);
-  }, 500);
+  tdToTh();
+  nameRemover();
+  idApplier();
 }
 //copy all
 function CopyToClipboard(textid) {
   navigator.clipboard.writeText(textResult);
-  console.log(textResult);
 }
 
 /*accordions to h3 */
@@ -204,6 +193,7 @@ function expand() {
 <ul class="list-unstyled" id="duties-a">
 <li><details><summary>
 `;
+
   const dashboardPostfix = "</summary>";
   let textResult = $("#textResult").val();
   const regexH3 = /<h3.*>(.)*<\/h3>/g;
@@ -238,7 +228,6 @@ function image() {
   foundFigureStart = textResult.match(regexFigureStart);
 
   for (let headers of foundFigureStart) {
-    console.log(2);
     let headersApplied = imagePrefix.concat(headers).concat("</summary>");
     textResult = textResult.replaceAll(headers, headersApplied);
   }
@@ -259,48 +248,53 @@ On this page:
 href="id"
 */
 function idApplier() {
-
   let textResult = $("#textResult").val();
   const regexH2 = /(<h2>)(.)*(<\/h2>)/g;
-  const regexH2IdApplier = /(>)(.)*(<\/h2>)/g
+  const regexH2IdApplier = /(>)(.)*(<\/h2>)/g;
   const regexH2idFormat = /(?<=<h2>)(.)*(?=<\/h2>)/g;
   const space = /\s/g;
 
   foundFigureStart = textResult.match(regexH2);
-  
 
   for (let headers of foundFigureStart) {
-    let id =   headers.match(regexH2idFormat);
-    id = String(id).replace(space,"-");
-    let applier =  headers.match(regexH2IdApplier);
-    let newString = (" id='"+id+"'").concat(applier);
-      $("#textResult").val(textResult);
-        textResult = textResult.replaceAll(applier, newString);
-   
-
-    
+    let id = headers.match(regexH2idFormat);
+    id = String(id).replace(space, "-");
+    let applier = headers.match(regexH2IdApplier);
+    let newString = (' id="' + id + '"').concat(applier);
+    $("#textResult").val(textResult);
+    textResult = textResult.replaceAll(applier, newString);
   }
 
-  
   $("#textResult").val(textResult);
 }
 /*name removerf */
 function nameRemover() {
-
   let textResult = $("#textResult").val();
   const names = /(<a name)(.)*(<\/a>)/g;
   const nameContentFormat = /(?<=<a name=".*">).*(?=<\/a>)/g;
- 
-allNameFound = textResult.match(names);
-  console.log(allNameFound);
+
+  allNameFound = textResult.match(names);
 
   for (let aTagWithName of allNameFound) {
-
-    let content =  aTagWithName.match(nameContentFormat);
+    let content = aTagWithName.match(nameContentFormat);
     textResult = textResult.replaceAll(aTagWithName, content);
-    
   }
 
-  
+  $("#textResult").val(textResult);
+}
+/*td to th*/
+function tdToTh() {
+  let textResult = $("#textResult").val();
+  const regexCaptureFirstTDGroup =
+    /((<th class="label-default-active">(.){10,}?))(<\/tr>)/gs;
+  const regexconcentrateTd = /<\/tr>/g;
+  const thClosure = "</th>";
+  const findTDs = textResult.match(regexCaptureFirstTDGroup);
+  for (let findTDsGroups of findTDs) {
+    let concentrateTd = findTDsGroups.match(regexconcentrateTd);
+    newFindTDsGroups = findTDsGroups.replaceAll(concentrateTd, thClosure);
+
+    textResult = textResult.replaceAll(findTDsGroups, newFindTDsGroups);
+  }
   $("#textResult").val(textResult);
 }
