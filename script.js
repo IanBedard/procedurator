@@ -217,7 +217,7 @@ function expand() {
 /*accordions to images */
 function image() {
   const imagePrefix = `
-  <ul class="list-unstyled" id="duties-a">
+  <ul class="list-unstyled">
   <li><details><summary>
   `;
 
@@ -235,7 +235,7 @@ function image() {
   foundFigureEnd = textResult.match(regexFigureEnd);
 
   for (let headers of foundFigureEnd) {
-    let headersApplied = "<p>".concat(headers).concat("<details/></li></ul>");
+    let headersApplied = "<p>".concat(headers).concat("</details></li></ul>");
     textResult = textResult.replaceAll(headers, headersApplied);
   }
   $("#textResult").val(textResult);
